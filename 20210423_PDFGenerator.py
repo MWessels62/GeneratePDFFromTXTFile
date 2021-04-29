@@ -25,19 +25,17 @@ while True:
     #FIND TEXT FILE TO BE CONVERTED
     root = Tk()
     root.withdraw() # we don't want a full GUI, so keep the root window from appearing
-    #cancel = tkinter.Button(root, text = "Cancels", command = exit)
-    #cancel.pack()
     filename = askopenfilename(title="Select the text file to be converted...",filetypes=(('Text files', "*.txt"),("all files", "*.*")))
         # show an "Open" dialog box and return the path to the selected file
     if filename == '': #An empty string means that "Cancel" was pressed, so this will stop the while loop. 
         exitMessage = "Cancel"
         break
+
     #INITIALISE PDF FILE OBJECT AND ADD BLANK PAGE
     pdf = FPDF()   
     pdf.add_page()
 
     # SET DEFAULT FONT AND FONT SIZE
-
     pdf.set_font("Times", size = 12)
 
     # OPEN TEXT FILE IN READ MODE
@@ -52,14 +50,12 @@ while True:
     # ASK IF FIRST LINE CONTAINS HEADING
     ROOT = Tk()
     ROOT.withdraw()
-
     headingInFirstLine = messagebox.askyesno("Question","Is the first line of the file a heading?")
     if headingInFirstLine == True:
         iterator = 0
     else: iterator = 1
 
     #PRINT EACH LINE TO PDF FILE OBJECT
-
     for x in textFileObject:
         if iterator != 0: # IF NOT THE FIRST LINE THEN PRINT WITH DEFAULT STYLE
             pdf.multi_cell(190,5,txt =x, align = 'L') #multicell allows text to wrap across lines
@@ -85,8 +81,6 @@ while True:
     root.withdraw()
 
     # GUI PROMPT TO BROWSE FOR DIRECTORY WHERE FILE WILL BE SAVED
-    
-
     outputFolder = filedialog.askdirectory(title="Select the folder where file should be saved...")
     if outputFolder == '': #An empty string means that "Cancel" was pressed, so this will stop the while loop. 
         exitMessage = "Cancel"
